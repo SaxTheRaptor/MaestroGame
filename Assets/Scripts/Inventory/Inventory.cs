@@ -33,12 +33,13 @@ public class Inventory : MonoBehaviour
         else
         {
             _items.Add(_item);
+            _items[_items.Count - 1].AddItem(_items_to_add);
         }
     }
 
     private void SortInventory(_ITEM_TYPE _type)
     {
-        switch(_type)
+        /*switch(_type)
         {
             case _ITEM_TYPE.ARMOUR:
                 _items = _items.OrderBy(c => c.GetType() - Enum.GetNames(typeof(_ITEM_TYPE)).Length - 1).ToList();
@@ -52,7 +53,7 @@ public class Inventory : MonoBehaviour
             case _ITEM_TYPE.WEAPON:
 
                 break;
-        }
+        }*/
 
 
     }
