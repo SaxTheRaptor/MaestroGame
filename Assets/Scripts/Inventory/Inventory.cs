@@ -6,35 +6,53 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
-    List<Item> _items = new List<Item>();
+    List<InventoryItem> _items = new List<InventoryItem>();
     //could alternatively be List<T> _items = new List<T>();
 
     private void Start()
     {
+        HealthPotion small = Resources.Load<HealthPotion>("Storables/Items/Small Health Potion");
+        HealthPotion medium = Resources.Load<HealthPotion>("Storables/Items/Medium Health Potion");
+        HealthPotion large = Resources.Load<HealthPotion>("Storables/Items/Large Health Potion");
         //add all the possible items
-        _items.Add(new HealthPotion());
-        _items[0].Constructor("Health Potion,", true, _ITEM_TYPE.POTION, "Heals you", 99);
+        AddItem(small, 5);
+        AddItem(medium, 8);
+        AddItem(large, 9);
+
+        //_items[0].Constructor("Health Potion,", true, _ITEM_TYPE.POTION, "Heals you", 99);
     }
 
     public void Use(int _current_item, int _character)
     {
-        if (_items[_current_item].GetItemCount() > 0)
+        /*if (_items[_current_item].GetItemCount() > 0)
         {
             _items[_current_item].UseItem(_character);
-        }
+        }*/
     }
 
-    public void AddItem(Item _item, int _items_to_add)
+    public void AddItem(InventoryStorable item, int itemsToAdd)
     {
-        if(_item.GetStackable() && _item.GetMaxItemStack() < _item.GetMaxItemStack() + _items_to_add)
+        InventoryItem itemInInventory = _items.FirstOrDefault(i => i.Item.ItemHash == item.ItemHash);
+        
+        if (itemInInventory != null)
         {
-            _item.AddItem(_items_to_add);
+            if (itemInInventory.Item.Stackable)
+            {
+                itemInInventory.Quantity += itemsToAdd;
+                if (itemInInventory.Quantity > itemInInventory.Item.MaxItemStack)
+                    itemInInventory.Quantity = itemInInventory.Item.MaxItemStack;
+            }
         }
         else
         {
-            _items.Add(_item);
-            _items[_items.Count - 1].AddItem(_items_to_add);
+            itemInInventory = new InventoryItem(item, itemsToAdd);
+            _items.Add(itemInInventory);
         }
+    }
+
+    public void GetContextWindow()
+    {
+
     }
 
     private void SortInventory(_ITEM_TYPE _type)
