@@ -11,6 +11,7 @@ public class SceneTransition : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
+            Debug.Log("Load Scene: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
         }
     }
