@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Shops/Clothing Store.unity
+    path: Assets/Scenes/Shops/ClothingStore.unity
     guid: 8632d5f1c9b62e640b5835789250529a
   - enabled: 1
     path: Assets/Scenes/Overworld.unity
