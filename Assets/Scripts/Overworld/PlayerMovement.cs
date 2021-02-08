@@ -10,6 +10,15 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     private Vector2 moveDirection;
     private Vector2 lastMoveDirection;
+
+    public VectorValue startingPosition;
+
+
+    void Start()
+    {
+        transform.position = startingPosition.initialValue;
+    }
+
     // Update is called once per frame
     void Update()
     {
