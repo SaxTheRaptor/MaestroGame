@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shops/AntiqueShop.unity
     guid: d71f6eae2bdb0a84195ce39ea4a54655
+  - enabled: 1
+    path: Assets/Scenes/Shops/Bar.unity
+    guid: 7585dd66d6c95854aae010ea438c13a9
   m_configObjects: {}
