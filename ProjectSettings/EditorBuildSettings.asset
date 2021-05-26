@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shops/Bar.unity
     guid: 7585dd66d6c95854aae010ea438c13a9
+  - enabled: 1
+    path: Assets/Scenes/Shops/ShopUI.unity
+    guid: 966396a72b7aa0f40a124ba41bb29f14
   m_configObjects: {}
