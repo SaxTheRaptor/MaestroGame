@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Provides functionality for the Pause Menu. 
@@ -9,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public string TitleLoad = "Scenes/title screen";
 
     // Update is called once per frame
     void Update()
@@ -64,5 +66,8 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quit Clicked");
+        Debug.Log("Load Scene: " + TitleLoad);
+        SceneManager.LoadScene(TitleLoad);
     }
 }
+//Scenes
