@@ -24,6 +24,22 @@ public class DialogueTrigger : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+        } else {
+            TriggerDialogue();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (type == 1 && collision.gameObject.CompareTag("Player"))
+        {
+            TriggerDialogue();
+            if (destroy)
+            {
+                Destroy(this.gameObject);
+            }
+        } else {
+            TriggerDialogue();
         }
     }
 
