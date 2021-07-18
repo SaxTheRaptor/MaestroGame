@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     public Image avatar_box;
     private Queue<string> sentences;
     private Queue<Dialogue> diags;
+    public GameObject background;
 
     private void Awake()
     {
@@ -59,10 +60,14 @@ public class DialogueManager : MonoBehaviour
         Time.timeScale = 0;
         panel.SetActive(true);
 
-
-        name_box.text = dialogue.name;
-        avatar_box.sprite = dialogue.avatar;
-        
+        if(dialogue.ignoreAvatar){
+            background.SetActive(false);
+            avatar_box.sprite = null;
+        }else{
+            background.SetActive(true);
+            name_box.text = dialogue.name;
+            avatar_box.sprite = dialogue.avatar;
+        }
 
         sentences.Clear();
 

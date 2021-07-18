@@ -14,9 +14,13 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue[] dialogue;
     public int type = 0;
     public bool destroy = false;
+    public bool ignoreCollision = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(ignoreCollision){
+            return;
+        }
         if (type == 1 && collision.gameObject.CompareTag("Player"))
         {
             TriggerDialogue();
@@ -31,6 +35,9 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(ignoreCollision){
+            return;
+        }
         if (type == 1 && collision.gameObject.CompareTag("Player"))
         {
             TriggerDialogue();
