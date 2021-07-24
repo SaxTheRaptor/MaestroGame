@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(interactKey)){
+        if(isInRange && Input.GetKeyDown(interactKey)){
             interactAction.Invoke();
         }
     }
