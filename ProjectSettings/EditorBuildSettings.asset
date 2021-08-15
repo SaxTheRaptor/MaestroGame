@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Outer Village.unity
     guid: dd22e71d3ba5bf24f8dd23dfb396dd86
+  - enabled: 1
+    path: Assets/Scenes/HallMain.unity
+    guid: 32f5d1ad551764e45a27b892f9d9cccd
+  - enabled: 1
+    path: Assets/Scenes/HallLeft.unity
+    guid: 7413027e35ec9ab4b8b7562e65706311
   m_configObjects: {}
