@@ -18461,7 +18461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Scenes/Overworld
-  playerPosition: {x: -43, y: 74}
+  playerPosition: {x: -45, y: 61}
   playerStorage: {fileID: 11400000, guid: 554315c3638b32847b77f8526837ed27, type: 2}
 --- !u!61 &1661066153
 BoxCollider2D:
