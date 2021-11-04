@@ -29,9 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shops/inn2.unity
     guid: 630d2715de29aec48ac429d188b938fb
-  - enabled: 1
-    path: Assets/Scenes/OuterHall.unity
-    guid: 1467d9f1854027c43bb1884a99acb9a0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Outer Village.unity
     guid: dd22e71d3ba5bf24f8dd23dfb396dd86
@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HallLeft.unity
     guid: 7413027e35ec9ab4b8b7562e65706311
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: c1422e2e4dc17764982f13733c09ed1f
   m_configObjects: {}
