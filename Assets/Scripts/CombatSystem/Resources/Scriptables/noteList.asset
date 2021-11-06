@@ -17,7 +17,7 @@ MonoBehaviour:
   noteList:
   - spawnTime: 3
     note: {fileID: 11400000, guid: 22124e3a335c5f64989a0c6a4fd4cbf5, type: 2}
-  - spawnTime: 6
+  - spawnTime: 3.5
     note: {fileID: 11400000, guid: 22124e3a335c5f64989a0c6a4fd4cbf5, type: 2}
   - spawnTime: 10
     note: {fileID: 11400000, guid: 22124e3a335c5f64989a0c6a4fd4cbf5, type: 2}

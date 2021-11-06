@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650720638}
   - component: {fileID: 650720637}
+  - component: {fileID: 650720639}
   m_Layer: 0
   m_Name: Indicator
   m_TagString: Untagged
@@ -202,6 +203,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650720639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650720636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabc070cf6ba29b4cb3480594ce12d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteCombatSystem: {fileID: 744377141}
 --- !u!1 &744377137
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,12 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteCombatUI: {fileID: 744377140}
   testAttack: {fileID: 11400000, guid: cb9449b4a4c3c4747a05c00dc9325e40, type: 2}
-  indicator: {fileID: 650720636}
-  s: {fileID: 21300000, guid: 3ed546d6512a21746ab702c7e2cdd201, type: 3}
-  a: {fileID: 21300000, guid: cf49a9760bdabd24792fffda056f0fa1, type: 3}
-  b: {fileID: 21300000, guid: 6255a3f61ee342b4e9861648578e115f, type: 3}
-  c: {fileID: 21300000, guid: cab34b1979c61eb438935abfd96d7860, type: 3}
-  bad: {fileID: 21300000, guid: 800f79624eaca064cb4e1ba8f890fd18, type: 3}
+  badGrade: {fileID: 0}
 --- !u!1 &1073824903
 GameObject:
   m_ObjectHideFlags: 0

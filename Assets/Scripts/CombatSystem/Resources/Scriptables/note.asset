@@ -15,7 +15,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 377d154408e859240bc730dfe6546d66, type: 3}
   key: 32
   speed: 2
-  Sdeltatime: 0.1
-  Adeltatime: 0.2
-  Bdeltatime: 0.3
-  Cdeltatime: 0.4
+  gradeList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
