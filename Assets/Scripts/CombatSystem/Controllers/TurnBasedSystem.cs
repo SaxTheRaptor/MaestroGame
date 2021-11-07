@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.CombatSystem.Models;
+using Assets.Scripts.CombatSystem.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,34 @@ namespace Assets.Scripts.CombatSystem.Controllers
     public class TurnBasedSystem: MonoBehaviour
     {
         public Attack attack;
-        public ChooseAttackDialog dialog;
+        public ChooseAttackDialog attackDialog;
+        public ChooseItemDialog itemDialog;
+        public ChooseActDialog actDialog;
+        public TurnBasedUI turnBasedUI;
         public NoteCombatSystem noteCombatSystem;
         void Start()
         {
-            dialog.AttackChosen += AttackChosen;
+            attackDialog.AttackChosen += AttackChosen;
             noteCombatSystem.AttackFinished += AttackFinished;
-            dialog.Show(new List<Attack>() { attack, attack });
+            turnBasedUI.AttackClicked += DoAttack;
+            turnBasedUI.ItemClicked += DoItem;
+            turnBasedUI.ActClicked += DoAct;
+            
+        }
+
+        void DoAttack(object sender, EventArgs args)
+        {
+            attackDialog.Show(new List<Attack>() { attack, attack });
+        }
+
+        void DoItem(object sender, EventArgs args)
+        {
+
+        }
+
+        void DoAct(object sender, EventArgs args)
+        {
+
         }
 
         void AttackChosen(object sender, EventArgs args)
@@ -29,7 +51,12 @@ namespace Assets.Scripts.CombatSystem.Controllers
 
         void AttackFinished(object sender, EventArgs args)
         {
-            dialog.Show(new List<Attack>() { attack, attack });
+            Show();
+        }
+
+        void Show()
+        {
+            turnBasedUI.Show();
         }
 
 

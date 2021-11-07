@@ -12,7 +12,7 @@ public class GradeIndicator : MonoBehaviour
     private bool indicatorFlashing = false;
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         startingIndicatorScale = this.transform.localScale;

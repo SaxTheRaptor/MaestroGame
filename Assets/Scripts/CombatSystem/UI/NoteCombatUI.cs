@@ -16,7 +16,7 @@ namespace Assets.Scripts.CombatSystem
         private List<PlayingNote> playingNotes;
         private double distance;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             playingNotes = new List<PlayingNote>();
             noteObjects = new List<GameObject>();
@@ -28,6 +28,7 @@ namespace Assets.Scripts.CombatSystem
             }
 
             distance = spawnPoint.position.x - endPoint.position.x;
+            
         }
 
         // Update is called once per frame

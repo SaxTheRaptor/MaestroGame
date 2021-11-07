@@ -27,6 +27,7 @@ public class ChooseAttackDialog : MonoBehaviour
         spellButtons[1].onClick.AddListener(delegate { ButtonClicked(1); });
         spellButtons[2].onClick.AddListener(delegate { ButtonClicked(2); });
         spellButtons[3].onClick.AddListener(delegate { ButtonClicked(3); });
+        
     }
 
     void ButtonClicked (int _id)

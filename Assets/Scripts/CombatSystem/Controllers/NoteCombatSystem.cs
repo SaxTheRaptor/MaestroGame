@@ -23,11 +23,12 @@ namespace Assets.Scripts.CombatSystem {
         private List<AttackNoteLoaded> noteToSpawn;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             args = new NoteHitEventArgs();
             handler = NoteHit;
             noteToSpawn = new List<AttackNoteLoaded>();
+            gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -45,6 +46,7 @@ namespace Assets.Scripts.CombatSystem {
 
         public void StartAttack(Attack attack)
         {
+            gameObject.SetActive(true);
             isAttacking = true;
             attackDeltaTime = 0;
             attack.noteList.ForEach(note =>
@@ -81,17 +83,7 @@ namespace Assets.Scripts.CombatSystem {
                 Grade leastGrade = _note.attackNoteLive.note.gradeList.Last();
                 if (_note.attackNoteLive.spawnTime + _note.attackNoteLive.note.speed + leastGrade.deltaTime < attackDeltaTime)
                 {
-                    Debug.Log("REM");
-                    //Remove notes that went past the lowest grade
-                    noteCombatUI.StopNote(_note.attackNoteLive);
-                    noteToSpawn.Remove(_note);
-
-                    args.Grade = badGrade;
-                    handler?.Invoke(this, args);
-
-                    if (noteToSpawn.Count == 0)
-                        AttackFinished?.Invoke(this, null);
-                    
+                    NoteConfirmed(_note, badGrade);
                 } else
                 {
                     //User pressed button
@@ -101,29 +93,29 @@ namespace Assets.Scripts.CombatSystem {
                         {
                             if (DidScore(_note.attackNoteLive, grade.deltaTime))
                             {
-                                noteCombatUI.StopNote(_note.attackNoteLive);
-                                noteToSpawn.Remove(_note);
-                                score += grade.score;
-                                args.Grade = grade;
-                                handler?.Invoke(this, args);
-
-                                if (noteToSpawn.Count == 0)
-                                    AttackFinished?.Invoke(this, null);
-
+                                NoteConfirmed(_note, grade);
                                 return;
                             }
-                        }
-                       
+                        }  
                     }
                 } 
             };
         }
 
-        private void Test(object sender, EventArgs a)
+        private void NoteConfirmed(AttackNoteLoaded _note, Grade grade)
         {
-            Debug.Log("test");
-        }
+            noteCombatUI.StopNote(_note.attackNoteLive);
+            noteToSpawn.Remove(_note);
+            score += grade.score;
+            args.Grade = grade;
+            handler?.Invoke(this, args);
 
+            if (noteToSpawn.Count == 0)
+            {
+                AttackFinished?.Invoke(this, null);
+                gameObject.SetActive(false);
+            }
+        }
 
         private bool DidScore(AttackNoteLive noteLive, double gradeTime)
         {
