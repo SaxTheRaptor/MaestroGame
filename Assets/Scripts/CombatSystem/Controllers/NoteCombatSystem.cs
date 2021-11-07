@@ -13,7 +13,7 @@ namespace Assets.Scripts.CombatSystem {
         
         public Grade badGrade;
 
-
+        public event EventHandler AttackFinished;
         public event EventHandler NoteHit;
         private EventHandler handler;
         private NoteHitEventArgs args;
@@ -25,12 +25,9 @@ namespace Assets.Scripts.CombatSystem {
         // Start is called before the first frame update
         void Start()
         {
-            
             args = new NoteHitEventArgs();
             handler = NoteHit;
             noteToSpawn = new List<AttackNoteLoaded>();
-            StartAttack(testAttack);
-            
         }
 
         // Update is called once per frame
@@ -46,7 +43,25 @@ namespace Assets.Scripts.CombatSystem {
             }
         }
 
-        void SpawnNotes()
+        public void StartAttack(Attack attack)
+        {
+            isAttacking = true;
+            attackDeltaTime = 0;
+            attack.noteList.ForEach(note =>
+            {
+                noteToSpawn.Add(new AttackNoteLoaded() { attackNoteLive = note });
+            });
+            noteToSpawn.Sort((note1, note2) =>
+           {
+               if (note1.attackNoteLive.spawnTime < note2.attackNoteLive.spawnTime)
+                   return -1;
+               else if (note1.attackNoteLive.spawnTime == note2.attackNoteLive.spawnTime)
+                   return 0;
+               else return 1;
+           });
+        }
+
+        private void SpawnNotes()
         {
             noteToSpawn.Where(nota => nota.spawned == false).ToList().ForEach(nota =>
             {
@@ -58,10 +73,10 @@ namespace Assets.Scripts.CombatSystem {
             });
         }
 
-        void CheckNotes()
+        private void CheckNotes()
         {
 
-            foreach (AttackNoteLoaded _note in noteToSpawn.Where(nota => nota.spawned == true).ToList().Reverse<AttackNoteLoaded>())
+            foreach (AttackNoteLoaded _note in noteToSpawn.Where(nota => nota.spawned == true).ToList().Reverse<AttackNoteLoaded>().Reverse())
             {
                 Grade leastGrade = _note.attackNoteLive.note.gradeList.Last();
                 if (_note.attackNoteLive.spawnTime + _note.attackNoteLive.note.speed + leastGrade.deltaTime < attackDeltaTime)
@@ -73,6 +88,9 @@ namespace Assets.Scripts.CombatSystem {
 
                     args.Grade = badGrade;
                     handler?.Invoke(this, args);
+
+                    if (noteToSpawn.Count == 0)
+                        AttackFinished?.Invoke(this, null);
                     
                 } else
                 {
@@ -88,7 +106,11 @@ namespace Assets.Scripts.CombatSystem {
                                 score += grade.score;
                                 args.Grade = grade;
                                 handler?.Invoke(this, args);
-                                break;
+
+                                if (noteToSpawn.Count == 0)
+                                    AttackFinished?.Invoke(this, null);
+
+                                return;
                             }
                         }
                        
@@ -112,20 +134,6 @@ namespace Assets.Scripts.CombatSystem {
             }
             return false;
         }
-
-
-
-        void StartAttack(Attack attack)
-        {
-            isAttacking = true;
-            attackDeltaTime = 0;
-            attack.noteList.ForEach(note =>
-            {
-                noteToSpawn.Add(new AttackNoteLoaded() { attackNoteLive = note });
-            });
-        }
-
-
     }
 }
 

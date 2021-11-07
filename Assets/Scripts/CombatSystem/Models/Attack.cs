@@ -14,5 +14,6 @@ namespace Assets.Scripts.CombatSystem
         public double successRateRequired;
         public List<AttackNoteLive> noteList;
         public double damage;
+        public Sprite sprite;
     }
 }
