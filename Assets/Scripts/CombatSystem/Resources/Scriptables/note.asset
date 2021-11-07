@@ -16,7 +16,7 @@ MonoBehaviour:
   key: 32
   speed: 2
   gradeList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e27a1ea1fd7c0fe49b0cd8e6f4c039a7, type: 2}
+  - {fileID: 11400000, guid: 5607a8cbb1d4e864db4814e6037d136f, type: 2}
+  - {fileID: 11400000, guid: 9d6c4f9760624354a9d1bda3502d6a49, type: 2}
+  - {fileID: 11400000, guid: 50b3bd00a3340ab42b93f1e31e0461c7, type: 2}
