@@ -41,6 +41,10 @@ namespace Assets.Scripts.Inventory.Models
             {
                 return _item;
             }
+            set
+            {
+                _item = value;
+            }
         }
 
        
