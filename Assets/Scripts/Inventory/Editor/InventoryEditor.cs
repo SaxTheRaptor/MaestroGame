@@ -39,6 +39,7 @@ public class InventoryEditor : EditorWindow
 
         if (selectedInventory != null && selectedInventory._items != null)
         {
+            EliminateItems();
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(position.width * (2f / 3f)), GUILayout.Height(500));
             for (int x = 0; x < rows; x++)
             {
@@ -51,9 +52,17 @@ public class InventoryEditor : EditorWindow
                         return _item.GridX == x && _item.GridY == y;
                     });
                     
-                    if (item != null && item.InventoryItem != null )
+                    if (item != null && item.InventoryItem != null)
                     {
-                        if (GUILayout.Button(item.InventoryItem.ItemStorable.Name + " " + item.InventoryItem.Quantity,GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
+                        string itemStorableString;
+                        if (item.InventoryItem.ItemStorable != null)
+                        {
+                            itemStorableString = item.InventoryItem.ItemStorable.Name + " " + item.InventoryItem.Quantity;
+                        } else
+                        {
+                            itemStorableString = "Empty Slot";
+                        }
+                        if (GUILayout.Button(itemStorableString, GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
                         {
                             selectedItem = item;
                         }
@@ -61,7 +70,17 @@ public class InventoryEditor : EditorWindow
                     }
                     else
                     {
-                        GUILayout.Button("Add slot", GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight));
+                        if (GUILayout.Button("Add slot", GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
+                        {
+                            InventoryGridItem newInvGrid = new InventoryGridItem()
+                            {
+                                GridX = x,
+                                GridY = y,
+                                InventoryItem = new InventoryItem(null, 0)
+                            };
+                            selectedInventory._items.Add(newInvGrid);
+                            selectedItem = newInvGrid;
+                        }
                     }
 
 
@@ -83,13 +102,11 @@ public class InventoryEditor : EditorWindow
         {
             InventorySelected();
         }
-        if (selectedItem != null && selectedItem.InventoryItem != null && selectedItem.InventoryItem.ItemStorable != null)
+        if (selectedItem != null && selectedItem.InventoryItem != null)
         {
             selectedItem.InventoryItem.Quantity = EditorGUILayout.IntField("Quantity", selectedItem.InventoryItem.Quantity);
-            EditorGUILayout.TextField("Name", selectedItem.InventoryItem.ItemStorable.Name.ToString());
             selectedItem.InventoryItem.ItemStorable = (InventoryStorable)EditorGUILayout.ObjectField(selectedItem.InventoryItem.ItemStorable, typeof(InventoryStorable), false);
         }
-        GUILayout.Button("Pigiami");
         GUILayout.EndVertical();
         GUILayout.EndArea();
         //GUILayout.BeginArea();
@@ -99,6 +116,18 @@ public class InventoryEditor : EditorWindow
 
 
 
+    }
+
+    void EliminateItems()
+    {
+        if (rows == 0 || columns == 0)
+        {
+            return;
+        }
+        selectedInventory._items.RemoveAll((item) =>
+        {
+            return item.GridX >= rows || item.GridY >= columns;
+        });
     }
 
     void InventorySelected()
