@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Scenes/Outer Village
-  playerPosition: {x: -1.87, y: -4.56}
+  playerPosition: {x: -6, y: -13.36762}
   playerStorage: {fileID: 11400000, guid: 554315c3638b32847b77f8526837ed27, type: 2}
 --- !u!61 &1046231672
 BoxCollider2D:
